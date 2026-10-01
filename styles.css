@@ -12,3 +12,21 @@ input[aria-invalid="true"] { border: 2px solid #a02020; }
 #reason-help { margin-top: 0.35rem; }
 #availability-list { padding: 0; list-style: none; }
 #availability-list li { padding: 0.8rem 0; border-bottom: 1px solid #b8c5d0; line-height: 1.5; overflow-wrap: anywhere; }
+
+section {
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 2px solid #b8c5d0;
+}
+
+#practice-error {
+  color: #922020;
+}
+
+#conflict-result ul {
+  padding-left: 1.5rem;
+}
+
+#conflict-result li {
+  margin-bottom: 0.5rem;
+}

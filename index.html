@@ -48,6 +48,28 @@
     <h2>Submitted Availability</h2>
     <p id="empty-state">No availability submitted yet.</p>
     <ul id="availability-list" aria-label="Submitted availability"></ul>
+
+    <section aria-labelledby="practice-heading">
+      <h2 id="practice-heading">Proposed Practice</h2>
+      <p>Check a proposed practice against submitted member availability.</p>
+
+      <form id="practice-form" novalidate>
+        <label for="practice-date">Practice date</label>
+        <input id="practice-date" name="practiceDate" type="date" required>
+
+        <label for="practice-start">Start time</label>
+        <input id="practice-start" name="practiceStart" type="time" required>
+
+        <label for="practice-end">End time</label>
+        <input id="practice-end" name="practiceEnd" type="time" required>
+
+        <button type="submit">Check Conflicts</button>
+
+        <p id="practice-error" role="alert"></p>
+      </form>
+
+      <div id="conflict-result" role="status" aria-live="polite"></div>
+    </section>
   </main>
 </body>
 </html>

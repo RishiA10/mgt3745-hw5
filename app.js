@@ -136,5 +136,80 @@
     saveStatus.textContent = 'Availability saved.';
   });
 
+  const practiceForm = document.querySelector('#practice-form');
+  const practiceDateInput = document.querySelector('#practice-date');
+  const practiceStartInput = document.querySelector('#practice-start');
+  const practiceEndInput = document.querySelector('#practice-end');
+  const practiceError = document.querySelector('#practice-error');
+  const conflictResult = document.querySelector('#conflict-result');
+
+  function timeToMinutes(time) {
+    const [hours, minutes] = time.split(':').map(Number);
+    return hours * 60 + minutes;
+  }
+
+  function findConflicts(practice) {
+    const practiceStart = timeToMinutes(practice.startTime);
+    const practiceEnd = timeToMinutes(practice.endTime);
+
+    return availabilityEntries.filter(entry => {
+      if (entry.date !== practice.date) {
+        return false;
+      }
+
+      const entryStart = timeToMinutes(entry.startTime);
+      const entryEnd = timeToMinutes(entry.endTime);
+
+      return entryStart < practiceEnd && practiceStart < entryEnd;
+    });
+  }
+
+  practiceForm.addEventListener('submit', event => {
+    event.preventDefault();
+
+    const date = practiceDateInput.value;
+    const startTime = practiceStartInput.value;
+    const endTime = practiceEndInput.value;
+
+    practiceError.textContent = '';
+    conflictResult.replaceChildren();
+
+    if (!date || !startTime || !endTime) {
+      practiceError.textContent =
+        'Enter a practice date, start time, and end time.';
+      return;
+    }
+
+    if (endTime <= startTime) {
+      practiceError.textContent =
+        'End time must be later than start time.';
+      return;
+    }
+
+    const conflicts = findConflicts({ date, startTime, endTime });
+
+    if (conflicts.length === 0) {
+      conflictResult.textContent = 'No availability conflicts were found.';
+      return;
+    }
+
+    const heading = document.createElement('p');
+    heading.textContent =
+      `${conflicts.length} availability conflict${conflicts.length === 1 ? '' : 's'} found:`;
+    conflictResult.append(heading);
+
+    const list = document.createElement('ul');
+
+    conflicts.forEach(entry => {
+      const item = document.createElement('li');
+      const reason = entry.reason ? ` — ${entry.reason}` : '';
+      item.textContent =
+        `${entry.date} — ${entry.startTime} to ${entry.endTime}${reason}`;
+      list.append(item);
+    });
+
+    conflictResult.append(list);
+  });
+
   loadAvailability();
 })();
