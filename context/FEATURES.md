@@ -43,6 +43,13 @@ Platform, data, privacy, scope, and relevant limits:
 - Unwanted: If a member submits an availability entry with missing required information, then the system shall reject it and say why.
 - Optional: Where a member updates their availability and it conflicts with a finalized practice, the system shall identify the conflict without automatically changing the practice.
 
+### F-07 Practice conflict detection
+
+- Event-driven: When team leadership submits a proposed practice that overlaps a member's submitted unavailable time, the system shall identify the conflicting availability entry.
+- Event-driven: When team leadership submits a proposed practice that does not overlap any submitted unavailable time, the system shall report that no availability conflicts were found.
+- Unwanted: If a proposed practice is submitted with missing required date, start time, or end time information, then the system shall reject the proposed practice and say why.
+- Unwanted: If a proposed practice has an end time that is not after its start time, then the system shall reject the proposed practice and explain that the end time must be after the start time.
+
 ## Handoff reflection
 
 I reviewed the specification from the perspective of someone who was not involved in the interviews and found that the system still leaves team leadership responsible for resolving scheduling conflicts. I revised the specification to make clear that the system identifies conflicts but does not automatically prioritize academic or dance commitments. A remaining limitation is determining how far in advance members must submit availability and when a practice schedule should become final.
