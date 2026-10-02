@@ -4,8 +4,6 @@ Status: ACTIVE.
 # User research and jobs
 
 ## Interview synthesis
-Use participant codes (INT-01 and INT-02), dates, relevant circumstances, and approximately 15 minutes per interview. Ask about a specific recent experience. Summarize confirmed, contradicted, or uncertain findings; do not manufacture surprises. Keep sensitive raw notes out of the repository.
-
 ### INT-01
 Participant code / relevant circumstance / date: INT-01 / Computer Science student with competitive dance experience / September 9, 2026
 What happened and the participant's workaround: The student described a situation where dance practice ran until around 3 AM before an exam at 12:30 PM the next day. He had already completed his homework but needed time to study for the exam and prepare for an upcoming interview. Because practice ended later than expected, he studied for hours afterward and took about a 1-hour nap. His usual workaround is to organize his work throughout the week and complete additional work over the weekend so that practice days have a lighter workload. 
@@ -29,4 +27,3 @@ Computer Science Student and competitive dance team member. Known: The student b
 PROFILE-02: relevant role, circumstances, needs, constraints, and evidence IDs.
 Medical student and competitive dance team member. Known: The student balances work, exams, MCAT preparation, and late dance practices. He needs enough time for studying and sleep while still meeting important team dance practices. He currently prepares academically throughout the week and communicates conflicts to captains and choreographers, who have let him leave practice early when necessary. Audition-related practices are a constraint because leaving early isn't always possible. He also reported that he has difficulty finding fellow teammates who are in the same boat as him because the team primarily consists of CS students. Assumed: His scheduling needs may change from those of other team members because of his academic pressures. Evidence: INT-02, JOB-02
 
-Use reported / observed / inferred labels. Earlier known / assumed labels are acceptable if the distinction is clear. Two exploratory interviews do not establish population prevalence.
