@@ -33,10 +33,10 @@ The RAT assumption remained viable after review because the useful conflict-dete
 
 | F-07 EARS row | Verification check | Current result |
 | --- | --- | --- |
-| Overlapping proposed practice identifies the conflicting availability entry | Automated GET `/entries` data check + manual browser overlap check + Judgment Q2 | PASS |
-| Non-overlapping proposed practice reports no conflicts | Automated GET `/entries` data check + manual browser no-overlap check + Judgment Q3 | PASS |
-| Missing required date/start/end is rejected and says why | Manual browser check + source review + Judgment Q4 | PASS |
-| End time not after start time is rejected and explained | Manual browser check + source review + Judgment Q5 | PASS |
+| Overlapping proposed practice identifies the conflicting availability entry | `evals/f07.test.js` — F-07 Event-driven overlap: GET /entries provides data that identifies an overlapping availability entry + manual browser overlap check + Judgment Q2 | PASS |
+| Non-overlapping proposed practice reports no conflicts | `evals/f07.test.js` — F-07 Event-driven no overlap: GET /entries supports reporting no conflicts for a non-overlapping practice + manual browser no-overlap check + Judgment Q3 | PASS |
+| Missing required date/start/end is rejected and says why | `evals/f07.test.js` — F-07 Unwanted missing fields: Worker rejects an availability POST with required time information missing + manual browser check + Judgment Q4 | PASS |
+| End time not after start time is rejected and explained | `evals/f07.test.js` — F-07 Unwanted invalid time order: Worker rejects an end time that is not after its start time + manual browser check + Judgment Q5 | PASS |
 
 Automated verification: **4 passed, 0 failed** using `API=https://mgt3745-hw4.rishia10.workers.dev npm test`.
 
