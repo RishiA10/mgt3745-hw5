@@ -21,12 +21,32 @@ I do not know whether bolt.new will preserve the existing Worker/D1 architecture
 
 ## Stake Resolution
 
-_Not resolved yet. Complete after the delegated build is received and verified._
+**Date: 2026-10-01 — resolved after delegation and verification**
+
+- **Tight:** Partially supported. Bolt produced a proposed-practice interface and visible conflict results, but it replaced the existing application architecture with a React/Vite application instead of extending the existing page files. The integrated version preserved the existing member availability feature and added the proposed-practice interface to `index.html`, `styles.css`, and `app.js`.
+- **Loose:** Supported. Bolt's conflict-detection logic distinguished overlapping from non-overlapping time ranges. After integration, manual checks and automated tests confirmed both an overlapping practice and a non-overlapping practice.
+- **Open:** Resolved negatively. Bolt did not preserve the existing Worker/D1 architecture. It introduced Supabase, a migration, React, TypeScript, and Vite. Those architectural changes were rejected during review; the integrated feature continues to use the existing Worker/D1 availability data.
+
+The RAT assumption remained viable after review because the useful conflict-detection behavior could be integrated with the existing availability data, even though Bolt's proposed storage and application architecture could not be accepted.
 
 ## Success Criteria
 
-_To be completed during verification. Each F-07 EARS row will map to a named automated test, judgment question, or human check._
+| F-07 EARS row | Verification check | Current result |
+| --- | --- | --- |
+| Overlapping proposed practice identifies the conflicting availability entry | `evals/f07.test.js` overlap test + manual browser check | PASS |
+| Non-overlapping proposed practice reports no conflicts | `evals/f07.test.js` no-overlap test + manual browser check | PASS |
+| Missing required date/start/end is rejected and says why | `evals/f07.test.js` missing-fields test + manual browser check | PASS |
+| End time not after start time is rejected and explained | `evals/f07.test.js` invalid-time test + manual browser check | PASS |
+
+Automated verification: **4 passed, 0 failed** using `API=https://mgt3745-hw4.rishia10.workers.dev npm test`.
 
 ## Error Log
 
-_To be completed during verification. Record failures from bolt.new, AI Studio Build, automated tests, and judgment evaluation, then sort by failure count._
+_Finalize after AI Studio Build and the two-column judgment evaluation._
+
+| Source | Failure | Count | Disposition |
+| --- | --- | ---: | --- |
+| bolt.new | Initial ZIP handoff could not be read | 1 | Retried using the same context as a readable text handoff |
+| bolt.new | Replaced the existing HTML/CSS/JS architecture with React/Vite/TypeScript | 1 | Rejected replacement architecture; integrated useful feature behavior into existing page files |
+| bolt.new | Introduced Supabase instead of preserving Worker/D1 | 1 | Rejected parallel storage; Worker/D1 remains authoritative |
+| Automated tests | No failures in four-test run | 0 | No action required |
