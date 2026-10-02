@@ -62,7 +62,7 @@ I used ChatGPT to help organize my findings and structure the specification. I d
 
 - **PASS — Unwanted:** If a member submits an availability entry with missing required information, then the system shall reject it and say why. I sent a POST request with the required files missing. The deployed Worker returned HTTP 400 and the message "date, start time, and end time are required."
 
-- **CANNOT TEST YET — Event-driven:** When a proposed practice conflicts with submitted availability, the system shall identify the conflict for team leadership. The current feature does not include proposed practice entry or conflict detection.
+- **PASS — Event-driven:** When a proposed practice conflicts with submitted availability, the system shall identify the conflicting availability entry. F-07 was verified with an overlapping browser check and automated verification in `evals/f07.test.js`.
 
 - **CANNOT TEST YET — State-driven:** While leadership finalizes a practice, the system shall display the practice date, time, and expected end time to team members. Practice finalization is not implemented in the current feature.
 

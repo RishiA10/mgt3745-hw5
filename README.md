@@ -62,7 +62,7 @@ Recommended reading order:
 - [DDR-002 — Retroactive HW4 Copilot record](docs/ddr/DDR-002.md)
 - [DDR-003 — ChatGPT HW5 guidance](docs/ddr/DDR-003.md)
 - [DDR-004 — Google AI Studio Build comparison](docs/ddr/DDR-004.md)
-- [Cross-tool comparison](COMPARISON.md)
+- [Cross-tool comparison](docs/COMPARISON.md)
 - [Two-grader judgment](docs/JUDGMENT.md)
 - Original Bolt artifact: `delegated/bolt-001.zip`
 
