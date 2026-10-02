@@ -1,71 +1,73 @@
-# Entries: Data Leaves the Browser
-
-> Replace this title and every *italic prompt* with your own words. Six
-> sections, in this order: What, See It Work, How to Run, Status, Links,
-> AI Use. GitHub renders this page; it can show, not only tell.
+# Member Availability — Practice Conflict Detection
 
 ## What
 
-*HW3 repository: [link it here](https://github.com/YOUR-USER/mgt3745-hw3)*
+This project helps competitive dance-team members protect academic commitments by recording times when they are unavailable for practice. The project context is documented in [PROJECT.md](context/PROJECT.md), and the feature specifications are in [FEATURES.md](context/FEATURES.md).
 
-*One paragraph naming the problem, the user, and the feature, with links to
-[PROJECT.md](context/PROJECT.md) and [FEATURES.md](context/FEATURES.md).
-One sentence on where data now lives and why (ADR-002).*
+HW5 adds the delegated **F-07 Practice Conflict Detection** feature. A user can enter a proposed practice date and time and check it against submitted member availability. The feature reports overlapping conflicts, reports when no conflicts exist, rejects missing required practice fields, and rejects an end time that is not after the start time.
+
+Member availability remains stored remotely through the existing Cloudflare Worker and D1 architecture rather than browser-only or parallel storage.
+
+Previous stage: [HW4 repository](https://github.com/RishiA10/mgt3745-hw4)
 
 ## See It Work
 
-*A GIF or screenshot in `/docs` showing an entry surviving a cleared cache
-or appearing in a second browser. Evidence and storefront at once.*
+F-07 was manually verified for all four specified behaviors:
 
-![See it work](docs/see-it-work.gif)
+- overlapping proposed practice identifies the conflicting availability;
+- non-overlapping proposed practice reports no conflicts;
+- missing required practice input is rejected with an explanation;
+- an end time that is not later than the start time is rejected with an explanation.
 
-```mermaid
-flowchart LR
-  A[Page loads] --> B[GET /entries]
-  B --> C[render]
-  D[User submits] --> E[POST /entries]
-  E -->|201| B
-  E -->|400| F[showError]
-  B -->|network fails| F
-```
+Automated verification also passes **4 of 4 tests**.
+
+![F-07 demonstration](docs/see-it-work.gif)
+
+![Passing automated tests](docs/npm-test-pass.png)
 
 ## How to Run
 
-Deployed: *`https://mgt3745-hw4.YOUR-SUBDOMAIN.workers.dev/entries`*
+The live Worker used by the application is:
 
-From a fresh Codespace:
+`https://mgt3745-hw4.rishia10.workers.dev`
 
-1. Open the repository in a Codespace. The devcontainer installs xdg-utils and runs `npm install`.
-2. `npx wrangler login --device`, then follow [docs/SESSION_B_COMMANDS.md](docs/SESSION_B_COMMANDS.md)
-   to create the database, run the schema, and deploy.
-3. Paste the deployed URL into `app.js` as `API`.
-4. Right-click `index.html`, choose **Open with Live Server**.
+To run the page in a Codespace:
 
-To run the Worker locally instead: `npm run dev` (port 8787, local D1 emulator).
+1. Open this repository in a GitHub Codespace.
+2. Run `python3 -m http.server 8000`.
+3. Open the forwarded port 8000 page.
+4. Submit member availability or use the Proposed Practice form to check for conflicts.
+
+To run the automated verification:
+
+`API=https://mgt3745-hw4.rishia10.workers.dev npm test`
 
 ## Status
 
-| Feature | EARS statement | Verdict |
-|---|---|---|
-| *Save an entry* | *WHEN a valid entry is submitted, THE SYSTEM SHALL store it* | *PASS* |
-| *Reject empty entry* | *IF text is missing, THEN THE SYSTEM SHALL reject with a reason* | *PASS* |
-| *Survive cleared cache* | *THE SYSTEM SHALL return stored entries on any device* | *PASS* |
-| *Network down* | *IF the server is unreachable, THE SYSTEM SHALL tell the user* | *CANNOT TEST YET* |
-| *Two clients, one table* | *...* | *DEFERRED (ADR-002)* |
+F-07 verification status: **4 of 4 EARS rows PASS**.
 
-*Full verification table lives in [FEATURES.md](context/FEATURES.md).*
+Automated test status: **4 passed, 0 failed**.
+
+The complete success criteria, prediction stake, stake resolution, and error log are recorded in [EVALS.md](context/EVALS.md).
 
 ## Links
 
-Reading order for a stranger: [PROJECT.md](context/PROJECT.md) →
-[USERS.md](context/USERS.md) → [FEATURES.md](context/FEATURES.md) →
-[ARCHITECTURE.md](context/ARCHITECTURE.md) → [STANDARDS.md](context/STANDARDS.md) →
-[TOOLS.md](context/TOOLS.md) → [STYLE.md](context/STYLE.md) →
-[CLAUDE.md](context/CLAUDE.md)
+Recommended reading order:
+
+[PROJECT.md](context/PROJECT.md) → [USERS.md](context/USERS.md) → [FEATURES.md](context/FEATURES.md) → [ARCHITECTURE.md](context/ARCHITECTURE.md) → [STANDARDS.md](context/STANDARDS.md) → [TOOLS.md](context/TOOLS.md) → [STYLE.md](context/STYLE.md) → [EVALS.md](context/EVALS.md) → [SKILLS.md](context/SKILLS.md)
+
+### Delegation
+
+- [DDR-001 — Bolt delegation](docs/ddr/DDR-001.md)
+- [DDR-002 — Retroactive HW4 Copilot record](docs/ddr/DDR-002.md)
+- [DDR-003 — ChatGPT HW5 guidance](docs/ddr/DDR-003.md)
+- [DDR-004 — Google AI Studio Build comparison](docs/ddr/DDR-004.md)
+- [Cross-tool comparison](COMPARISON.md)
+- [Two-grader judgment](docs/JUDGMENT.md)
+- Original Bolt artifact: `delegated/bolt-001.zip`
 
 ## AI Use
 
-*Three proto-DDR questions. What did the agent write? What did you check,
-and how? What could you not fully verify, and what did you do about it?
-For the Worker specifically: name the thing you could not fully inspect.
-Hours spent: ___.*
+AI use and verification are documented in the DDRs linked above. Bolt was used for the delegated F-07 build, Google AI Studio Build was used for the required cross-tool comparison, ChatGPT was used for HW5 guidance and troubleshooting, and DDR-002 records the surviving evidence concerning Copilot from HW4.
+
+Approximately **2.5 hours** had been spent on HW5 at the time the ChatGPT delegation record was created. AI-generated output was treated as untrusted until reviewed or tested, and unresolved verification limits are recorded in the applicable DDR and EVALS error log.
