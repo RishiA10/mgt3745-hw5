@@ -33,20 +33,23 @@ The RAT assumption remained viable after review because the useful conflict-dete
 
 | F-07 EARS row | Verification check | Current result |
 | --- | --- | --- |
-| Overlapping proposed practice identifies the conflicting availability entry | `evals/f07.test.js` overlap test + manual browser check | PASS |
-| Non-overlapping proposed practice reports no conflicts | `evals/f07.test.js` no-overlap test + manual browser check | PASS |
-| Missing required date/start/end is rejected and says why | `evals/f07.test.js` missing-fields test + manual browser check | PASS |
-| End time not after start time is rejected and explained | `evals/f07.test.js` invalid-time test + manual browser check | PASS |
+| Overlapping proposed practice identifies the conflicting availability entry | Automated GET `/entries` data check + manual browser overlap check + Judgment Q2 | PASS |
+| Non-overlapping proposed practice reports no conflicts | Automated GET `/entries` data check + manual browser no-overlap check + Judgment Q3 | PASS |
+| Missing required date/start/end is rejected and says why | Manual browser check + source review + Judgment Q4 | PASS |
+| End time not after start time is rejected and explained | Manual browser check + source review + Judgment Q5 | PASS |
 
 Automated verification: **4 passed, 0 failed** using `API=https://mgt3745-hw4.rishia10.workers.dev npm test`.
 
+The automated suite also verifies Worker rejection behavior for missing required availability fields and invalid availability time order. Browser-specific proposed-practice validation is verified separately through the manual checks and judgment review above.
+
 ## Error Log
 
-_Finalize after AI Studio Build and the two-column judgment evaluation._
-
-| Source | Failure | Count | Disposition |
+| Source | Failure or finding | Count | Disposition |
 | --- | --- | ---: | --- |
-| bolt.new | Initial ZIP handoff could not be read | 1 | Retried using the same context as a readable text handoff |
+| bolt.new | Initial ZIP handoff could not be read | 1 | Retried using the same project context as a readable text handoff |
 | bolt.new | Replaced the existing HTML/CSS/JS architecture with React/Vite/TypeScript | 1 | Rejected replacement architecture; integrated useful feature behavior into existing page files |
 | bolt.new | Introduced Supabase instead of preserving Worker/D1 | 1 | Rejected parallel storage; Worker/D1 remains authoritative |
-| Automated tests | No failures in four-test run | 0 | No action required |
+| Google AI Studio Build | Added a different Worker-side conflict approach from the integrated client-side design | 1 | Recorded as a cross-tool difference; AI Studio code was not integrated |
+| Google AI Studio Build | Generated implementation was not independently executed or deployed | 1 | Marked CANNOT FULLY VERIFY in DDR-004; used only for comparison |
+| Judgment evaluation | No disagreements across 12 binary questions | 0 | 100% agreement; below-80% finding not triggered |
+| Automated tests | No failures in four-test run | 0 | 4 passed; no test failure disposition required |
