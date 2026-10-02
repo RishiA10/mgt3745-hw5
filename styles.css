@@ -1,26 +1,38 @@
-:root { font-family: Arial, Helvetica, sans-serif; color: #172b40; background: #f7f9fb; }
+:root {
+  --color-primary: #123552;
+  --color-accent: #b16d00;
+  --color-background: #f7f9fb;
+  --color-text: #172b40;
+  --color-error: #922020;
+  --color-border: #526578;
+  --color-divider: #b8c5d0;
+  --color-input-background: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-text);
+  background: var(--color-background);
+}
 body { margin: 0; }
 main { max-width: 44rem; margin: 2rem auto; padding: 0 1.25rem; }
 h1 { font-size: 2rem; }
 p { line-height: 1.5; }
 label { display: block; margin-top: 1rem; margin-bottom: 0.35rem; font-weight: 700; }
-input { box-sizing: border-box; display: block; width: 100%; font: inherit; padding: 0.8rem; border: 1px solid #526578; border-radius: 0.3rem; }
-button { min-height: 44px; margin: 1rem 0; padding: 0.6rem 1rem; font: inherit; background: #123552; color: #fff; border: 2px solid #123552; border-radius: 0.3rem; cursor: pointer; }
-button:focus-visible, input:focus-visible { outline: 3px solid #b16d00; outline-offset: 3px; }
-input[aria-invalid="true"] { border: 2px solid #a02020; }
-#form-error { color: #922020; }
+input { box-sizing: border-box; display: block; width: 100%; font: inherit; padding: 0.8rem; color: var(--color-text); background: var(--color-input-background); border: 1px solid var(--color-border); border-radius: 0.3rem; }
+button { min-height: 44px; margin: 1rem 0; padding: 0.6rem 1rem; font: inherit; background: var(--color-primary); color: var(--color-input-background); border: 2px solid var(--color-primary); border-radius: 0.3rem; cursor: pointer; }
+button:focus-visible, input:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 3px; }
+input[aria-invalid="true"] { border: 2px solid var(--color-error); }
+#form-error { color: var(--color-error); }
 #reason-help { margin-top: 0.35rem; }
 #availability-list { padding: 0; list-style: none; }
-#availability-list li { padding: 0.8rem 0; border-bottom: 1px solid #b8c5d0; line-height: 1.5; overflow-wrap: anywhere; }
+#availability-list li { padding: 0.8rem 0; border-bottom: 1px solid var(--color-divider); line-height: 1.5; overflow-wrap: anywhere; }
 
 section {
   margin-top: 2.5rem;
   padding-top: 1rem;
-  border-top: 2px solid #b8c5d0;
+  border-top: 2px solid var(--color-divider);
 }
 
 #practice-error {
-  color: #922020;
+  color: var(--color-error);
 }
 
 #conflict-result ul {
